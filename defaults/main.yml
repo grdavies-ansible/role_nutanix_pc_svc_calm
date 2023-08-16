@@ -1,0 +1,10 @@
+---
+# defaults file for nutanix_role_prism_calm
+nutanix_host: ""
+nutanix_username: ""
+nutanix_password: ""
+nutanix_port: 9440
+validate_certs: no
+nutanix_debug: False
+
+nutanix_calm_enable_default_apps: False
