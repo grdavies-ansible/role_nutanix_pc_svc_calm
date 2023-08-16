@@ -1,6 +1,7 @@
 ---
 # tasks file for nutanix_role_prism_calm
-- import_tasks: setup_api.yml
+- name: Setup connection to Nutanix API
+  ansible.builtin.include_tasks: setup_api.yml
 
 - name: "Task can only be run against Prism Central"
   ansible.builtin.fail:
@@ -9,7 +10,7 @@
     - nutanix_endpoint_prism_type != 'pc'
 
 - name: Get Calm state
-  include_tasks: get_state.yml
+  ansible.builtin.include_tasks: get_state.yml
 
 # - name: Check Calm Pre-Reqs
 #   include_tasks: check_prereqs.yml
@@ -18,13 +19,13 @@
 #     - nutanix_calm_enable | default(False)
 
 - name: Enable Calm
-  include_tasks: enable_feature.yml
+  ansible.builtin.include_tasks: enable_feature.yml
   when:
     - nutanix_calm_state.json.service_enablement_status != "ENABLED"
     - nutanix_calm_enable | default(False)
 
 - name: Disable Calm
-  include_tasks: disable_feature.yml
+  ansible.builtin.include_tasks: disable_feature.yml
   when:
     - nutanix_calm_state.json.service_enablement_status == "ENABLED"
     - nutanix_calm_enable | default(True)

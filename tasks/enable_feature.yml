@@ -1,6 +1,6 @@
 ---
 - name: Enable Calm
-  uri:
+  ansible.builtin.uri:
     url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/services/nucalm"
     method: POST
     body:
@@ -14,7 +14,7 @@
   register: nutanix_calm_enable
 
 - name: Debug nutanix_calm_enable
-  debug:
+  ansible.builtin.debug:
     var: nutanix_calm_enable
   when:
     - nutanix_debug
