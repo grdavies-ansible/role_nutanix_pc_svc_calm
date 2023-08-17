@@ -19,13 +19,13 @@
 #     - nutanix_calm_enable | default(False)
 
 - name: Enable Calm
-  ansible.builtin.include_tasks: enable_feature.yml
+  ansible.builtin.include_tasks: enable_service.yml
   when:
     - nutanix_calm_state.json.service_enablement_status != "ENABLED"
     - nutanix_calm_enable | default(False)
 
 - name: Disable Calm
-  ansible.builtin.include_tasks: disable_feature.yml
+  ansible.builtin.include_tasks: disable_service.yml
   when:
     - nutanix_calm_state.json.service_enablement_status == "ENABLED"
     - nutanix_calm_enable | default(True)
