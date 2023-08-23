@@ -18,4 +18,4 @@
 
 - name: Current status of Calm service(s)
   ansible.builtin.debug:
-    msg: "Calm is currently in a '{{ nutanix_calm_state.json.service_enablement_status }}' state."
+    msg: "Calm is currently in a '{{ nutanix_calm_state.json.service_enablement_status | lower }}' state."
