@@ -6,5 +6,4 @@ nutanix_password: ""
 nutanix_port: 9440
 validate_certs: false
 nutanix_debug: false
-
-nutanix_calm_enable_default_apps: false
+nutanix_calm_enable_default_apps: true
