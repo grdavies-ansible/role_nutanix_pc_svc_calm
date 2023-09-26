@@ -1,20 +1,20 @@
 ---
 - name: Get current Calm Enablement Status
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/services/nucalm/status"
+    url: "https://{{ role_nutanix_prism_api_url_base }}/api/nutanix/v3/services/nucalm/status"
     method: GET
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_pc_svc_calm_validate_certs }}"
     body_format: json
     status_code: 200
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
   register: nutanix_calm_state
 
 - name: Debug nutanix_calm_state
   ansible.builtin.debug:
     var: nutanix_calm_state
   when:
-    - nutanix_debug
+    - role_nutanix_pc_svc_calm_debug
 
 - name: Current status of Calm service(s)
   ansible.builtin.debug:

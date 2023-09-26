@@ -1,27 +1,33 @@
 ---
 - name: Enable Calm
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/services/nucalm"
+    url: "https://{{ role_nutanix_prism_api_auth_string_b64 }}/api/nutanix/v3/services/nucalm"
     method: POST
     body:
       state: DISABLE
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_pc_svc_calm_validate_certs }}"
     body_format: json
     status_code: 202
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
   register: nutanix_calm_disable
 
 - name: Debug nutanix_calm_disable
   ansible.builtin.debug:
     var: nutanix_calm_disable
   when:
-    - nutanix_debug
+    - role_nutanix_pc_svc_calm_debug
 
 - name: Wait for Calm enable task to complete
   ansible.builtin.import_role:
     name: grdavies.role_nutanix_prism_monitor_task
   vars:
-    nutanix_task_uuid: "{{ nutanix_calm_disable.json.task_uuid }}"
-    nutanix_task_retries: 60
-    nutanix_task_retry_delay: 15
+    role_nutanix_prism_monitor_task_host: "{{ role_nutanix_pc_svc_calm_host }}"
+    role_nutanix_prism_monitor_task_username: "{{ role_nutanix_pc_svc_calm_username }}"
+    role_nutanix_prism_monitor_task_password: "{{ role_nutanix_pc_svc_calm_password }}"
+    role_nutanix_prism_monitor_task_port: "{{ role_nutanix_pc_svc_calm_port }}"
+    role_nutanix_prism_monitor_task_validate_certs: "{{ role_nutanix_pc_svc_calm_validate_certs }}"
+    role_nutanix_prism_monitor_task_debug: "{{ role_nutanix_pc_svc_calm_debug }}"
+    role_nutanix_prism_monitor_task_uuid: "{{ nutanix_calm_disable.json.task_uuid }}"
+    role_nutanix_prism_monitor_task_retries: 60
+    role_nutanix_prism_monitor_task_retry_delay: 15
