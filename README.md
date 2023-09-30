@@ -22,7 +22,7 @@ This Ansible role manages the Calm service on Prism Central.
 
 ## Example Playbook
 
-```
+```YAML
 - hosts: localhost
   gather_facts: false
   roles:
