@@ -6,7 +6,7 @@
     body:
       state: ENABLE
       enable_nutanix_apps: "{{ role_nutanix_pc_svc_calm_default_apps }}"
-    validate_certs: "{{ role_nutanix_pc_svc_calm_validate_certs }}"
+    validate_certs: "{{ role_nutanix_pc_svc_calm_host_validate_certs }}"
     body_format: json
     status_code: 202
     headers:
@@ -24,10 +24,10 @@
     name: grdavies.role_nutanix_prism_monitor_task
   vars:
     role_nutanix_prism_monitor_task_host: "{{ role_nutanix_pc_svc_calm_host }}"
-    role_nutanix_prism_monitor_task_username: "{{ role_nutanix_pc_svc_calm_username }}"
-    role_nutanix_prism_monitor_task_password: "{{ role_nutanix_pc_svc_calm_password }}"
-    role_nutanix_prism_monitor_task_port: "{{ role_nutanix_pc_svc_calm_port | default(omit) }}"
-    role_nutanix_prism_monitor_task_validate_certs: "{{ role_nutanix_pc_svc_calm_validate_certs | default(omit) }}"
+    role_nutanix_prism_monitor_task_host_username: "{{ role_nutanix_pc_svc_calm_host_username }}"
+    role_nutanix_prism_monitor_task_host_password: "{{ role_nutanix_pc_svc_calm_host_password }}"
+    role_nutanix_prism_monitor_task_host_port: "{{ role_nutanix_pc_svc_calm_host_port | default(omit) }}"
+    role_nutanix_prism_monitor_task_host_validate_certs: "{{ role_nutanix_pc_svc_calm_host_validate_certs | default(omit) }}"
     role_nutanix_prism_monitor_task_debug: "{{ role_nutanix_pc_svc_calm_debug | default(omit) }}"
     role_nutanix_prism_monitor_task_uuid: "{{ role_nutanix_pc_svc_calm_enable.json.task_uuid }}"
     role_nutanix_prism_monitor_task_retries: 60
