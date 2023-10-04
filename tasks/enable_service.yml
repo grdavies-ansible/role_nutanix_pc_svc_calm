@@ -1,7 +1,7 @@
 ---
 - name: Enable Calm
   ansible.builtin.uri:
-    url: "https://{{ role_nutanix_prism_api_auth_string_b64 }}/api/nutanix/v3/services/nucalm"
+    url: "https://{{ role_nutanix_prism_api_url_base }}/api/nutanix/v3/services/nucalm"
     method: POST
     body:
       state: ENABLE
